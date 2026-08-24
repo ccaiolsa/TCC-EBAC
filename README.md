@@ -10,11 +10,9 @@ Report - Local aonde estarão armazenados os relatórios dos demais testes
 Avaliar todo conhecimento adquirido quanto a análise de qualidade de sistemas (tanto web quanto mobile). Nele terão testes de diferentes níveis: testes de componentes, integração, sistema e aceitação. As ferramentas utilizadas estão descritas na Estratégia de Teste presente no root do projeto.
 
 # O que será testado?
-Será testado uma aplicação web voltada para estudos da própria instituição:
-Imagem Docker do Frontend:
-ernestosbarbosa/lojaebac
-
-Imagem Docker do Banco de Dados:
-ernestosbarbosa/lojaebacdb
+Será testado aplicação de estudo própria da EBAC. Para executa-la basta executar o Docker-compose.yml que tanto o banco de dados quanto o frontend serão "buildados"
 
 Porta: http//localhost:80
+
+# Comandos para iniciar a aplicação
+docker compose up
