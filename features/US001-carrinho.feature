@@ -8,7 +8,7 @@ Feature: US001 - Adicionar item ao carrinho
         And o usuário clica no botão "Comprar"
         Then o item deve ser adicionado ao carrinho com sucesso
 
-    Scenario: Não adicionar item ao carrinho quando o produto estiver indisponível
+    Scenario: Atingir o limite máximo do mesmo produto
         Given que o usuário digitar "Ingrid Running Jacket" na barra de pesquisa
         When o usuário selecionar a cor "White" e o tamanho "XL"
         And o usuário clica no botão "Comprar"
