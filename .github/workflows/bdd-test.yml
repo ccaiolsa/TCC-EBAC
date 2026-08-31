@@ -1,5 +1,7 @@
 name: Teste E2E
 on: [push]
+permissions: 
+  contents: write
 jobs:
   install:
     runs-on: ubuntu-latest
@@ -27,12 +29,15 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Salvar Relatório Mochawesome como Artefato
-        uses: actions/upload-artifact@v4
-        if: always() 
+      - name: Salvar Relatório na branch reports
+        uses: peaceiris/actions-github-pages@v3.1.12
+        if: always()
         with:
-          name: relatorio-mochawesome
-          path: tests/reports/html
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         publish_branch: reports
+         publish_dir: 'tests/reports/mochawesome-reporter'
+         commit_message: 'docs: relatorio de testes automáticos [skip ci]'
+
 
       - name: Derrubando container
         if: always()
