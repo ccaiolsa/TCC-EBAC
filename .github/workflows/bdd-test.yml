@@ -36,6 +36,7 @@ jobs:
          github_token: ${{ secrets.GITHUB_TOKEN }}
          publish_branch: reports
          publish_dir: 'tests/reports/mochawesome-reporter'
+         force_orphan: true
          commit_message: 'docs: relatorio de testes automáticos [skip ci]'
 
 
