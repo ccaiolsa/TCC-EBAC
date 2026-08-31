@@ -1,4 +1,5 @@
 const { Given, When, Then, DataTable } = require('@badeball/cypress-cucumber-preprocessor');
+import 'cypress-mochawesome-reporter/cucumberSupport';
 
 
 Given('o usuário estiver na home page', () => {
