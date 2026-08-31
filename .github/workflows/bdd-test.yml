@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: login no dockerhub
         uses: docker/login-action@v4
@@ -19,13 +19,13 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v7
         with:
-          start: npm test
+          run: npm test
           wait-on: 'http://localhost:80' 
           record: true
           browser: chrome
-          parallel:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Derrubando container
-        uses: ./docker compose down -v
+        if: always()
+        run: docker compose down -v
