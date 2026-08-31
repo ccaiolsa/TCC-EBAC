@@ -12,8 +12,9 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
       - name: Subindo container
-        run: docker compose up -d
+        run: docker compose up -d --build
   
       - name: Cypress run
         uses: cypress-io/github-action@v7
@@ -21,6 +22,7 @@ jobs:
          wait-on: 'http://localhost:80' 
          record: true
          browser: chrome
+
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,4 +36,5 @@ jobs:
 
       - name: Derrubando container
         if: always()
+
         run: docker compose down -v
