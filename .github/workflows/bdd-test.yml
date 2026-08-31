@@ -1,0 +1,38 @@
+name: Teste E2E
+on: [push]
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Configurando Docker para Build
+        uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226
+
+      - name: Cypress Install
+        uses: cypress-io/github-action@v7
+
+      - name: login no dockerhub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Subindo container
+        uses: ./docker compose up -d
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cypress run
+        uses: cypress-io/github-action@v7
+        with:
+          start: npm test
+          wait-on: 'http://localhost:80' 
+          record: true
+          browser: chrome
+          parallel:
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Derrubando container
+        uses: ./docker compose down -v

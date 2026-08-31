@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js"
+    "test": "npx cypress run"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^26.0.0",
