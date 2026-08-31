@@ -88,10 +88,12 @@
     "@cucumber/cucumber": "^13.2.1",
     "@cypress/webpack-preprocessor": "^7.1.2",
     "cypress": "^15.21.1",
-    "cypress-cucumber-preprocessor": "^4.3.1",
     "esbuild": "^0.28.2"
   },
   "allowScripts": {
     "cypress@15.21.1": true
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "tests/BDD/step_definitions/**/*.{js,ts}"
   }
 }

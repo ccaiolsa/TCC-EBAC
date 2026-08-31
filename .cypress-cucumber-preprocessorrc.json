@@ -1,0 +1,5 @@
+{
+  "stepDefinitions": [
+    "tests/BDD/step_definitions/**/*.{js,ts}"
+  ]
+}
