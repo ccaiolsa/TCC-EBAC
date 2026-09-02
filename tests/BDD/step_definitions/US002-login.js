@@ -15,4 +15,4 @@ Then('o usuário deve ser redirecionado para a página do perfil do usuário',fu
 });
 Then('a seguinte mensagem deve aparecer: {string}',function(mensagem){
     cy.contains(mensagem).should('be.visible')
-});
+})

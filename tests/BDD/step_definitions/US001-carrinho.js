@@ -17,7 +17,6 @@ When("digitar {string} na barra de pesquisa e o usuário selecionar a cor {strin
     cy.get(`.button-variable-item-${cor}`).click()
     cy.get('.single_add_to_cart_button').should('be.enabled').click()
 
-
 });
 When('digitar {string} na barra de pesquisa e o usuário selecionar a cor {string} e o tamanho {string} e a quantidade {string}', (produto, cor, tamanho, quantidade) => {
     cy.get('[data-toggle="modal"]').eq(1).click()
