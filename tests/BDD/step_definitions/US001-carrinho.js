@@ -6,42 +6,13 @@ Given('o usuário estiver na home page', () => {
     cy.visit('/')
 })
 When("digitar {string} na barra de pesquisa e o usuário selecionar a cor {string} e o tamanho {string}", (produto, cor, tamanho) => {
-    cy.get('[data-toggle="modal"]').eq(1).click()
-
-    cy.get('[placeholder="Enter your search ..."]').eq(1).type(produto)
-    cy.get('#ui-id-1 > :nth-child(1)').should('exist').click()
-
-    cy.get('.woocommerce-tabs').should('be.visible')
-    cy.get(`.button-variable-item-${cor}`).click()
-    cy.get(`.button-variable-item-${tamanho}`).click()
-    cy.get(`.button-variable-item-${cor}`).click()
-    cy.get('.single_add_to_cart_button').should('be.enabled').click()
-
+   cy.adicionarProduto(produto, cor, tamanho, 1)
 });
 When('digitar {string} na barra de pesquisa e o usuário selecionar a cor {string} e o tamanho {string} e a quantidade {string}', (produto, cor, tamanho, quantidade) => {
-    cy.get('[data-toggle="modal"]').eq(1).click()
-
-    cy.get('[placeholder="Enter your search ..."]').eq(1).type(produto)
-    cy.get('#ui-id-1 > :nth-child(1)').should('exist').click()
-
-    cy.get('.woocommerce-tabs').should('be.visible')
-    cy.get(`.button-variable-item-${cor}`).click()
-    cy.get(`.button-variable-item-${tamanho}`).click()
-    cy.get(`.button-variable-item-${cor}`).click()
-
-    cy.get('[name="quantity"]').clear().type(quantidade)
-    cy.get('.single_add_to_cart_button').should('be.enabled').click()
-
+    cy.adicionarProduto(produto, cor, tamanho, quantidade)
 });
 When("digitar {string} na barra de pesquisa e o usuário selecionar a cor {string}", (produto, cor) => {
-    cy.get('[data-toggle="modal"]').eq(1).click()
-
-    cy.get('[placeholder="Enter your search ..."]').eq(1).type(produto)
-    cy.get('#ui-id-1 > :nth-child(1)').should('exist').click()
-
-    cy.get('.woocommerce-tabs').should('be.visible')
-    cy.get(`.button-variable-item-${cor}`).click()
-    cy.get(`.button-variable-item-${cor}`).click()
+    cy.adicionarProduto(produto, cor, '', 1)
 
 });
 

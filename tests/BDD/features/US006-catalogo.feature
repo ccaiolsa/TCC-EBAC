@@ -20,11 +20,11 @@ Feature: US006 - Catálogo de produtos
 
     Scenario Outline: CT03 - Realizar busca de produtos apenas digitando seu nome
         Given que o usuário esteja na página de busca
-        When o usuário digitar "<produto>"
+        When o usuário digitar "<palavraChave>"
         Then o usuário ter acesso à um catálogo com os termos correspondentes "<termo1>" e "<termo2>"
         Examples:
         Examples:
-            | produto | termo1 | termo2 |
+            | palavraChave | termo1 | termo2 |
             | Pants   | pant   | tight  |   
 
     Scenario Outline: CT04 - Acessar catálogo de produtos utilizando filtro de produtos

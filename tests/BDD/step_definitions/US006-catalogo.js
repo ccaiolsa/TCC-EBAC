@@ -5,27 +5,23 @@ Given(`que o usuário esteja na página de busca`, function(){
 });
 
 When(`o usuário inserir {string} e filtrar por {string}`, function(palavraChave, filtro){
-    cy.get('[placeholder="Enter your search ..."]').eq(1).type(palavraChave);
-    cy.get('[type="submit"]').eq(1).click()
-    cy.get('[name="orderby"]').select(filtro);
-
+    cy.confCatalogo('',palavraChave, filtro)
 });
 
 When(`o usuário selecionar a categoria {string}`, function(categoria){
-    cy.visit(`/?product_cat=${categoria}&s=&post_type=product`);
+    cy.confCatalogo(categoria,'', 'Relevância')
 
 });
 
-When('o usuário digitar {string}', function(produto){
-    cy.get('[placeholder="Enter your search ..."]').eq(1).type(produto);
-    cy.get('[type="submit"]').eq(1).click()
+When('o usuário digitar {string}', function(palavraChave){
+    cy.confCatalogo('',palavraChave, '')
 });
 
 When('o usuário selecionar filtro {string}', function(filtro){
-    cy.get('[name="orderby"]').select(filtro);
+    cy.confCatalogo('','', filtro)
 });
 
-Then(`o usuário ter acesso à um catálogo de produtos personalizado`, function(produto){
+Then(`o usuário ter acesso à um catálogo de produtos personalizado`, function(){
     cy.get('.woof_remove_ppi').should('be.visible');
     cy.get(' .price > .woocommerce-Price-amount > bdi').then(($el) =>{
         const format = (valor) =>{

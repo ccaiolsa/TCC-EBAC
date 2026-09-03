@@ -5,9 +5,7 @@ Given('que o usuário esteja na página de login', function(){
     cy.visit('/minha-conta/')
 });
 When('o usuário inserir o email {string} e senha {string}',function(email, senha){
-    cy.get('[name="username"]').type(email)
-    cy.get('.woocommerce-form > :nth-child(2) > [name="password"]').type(senha)
-    cy.get('[name="login"]').click()
+    cy.login(email, senha)
 
 });
 Then('o usuário deve ser redirecionado para a página do perfil do usuário',function(){
