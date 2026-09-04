@@ -1,10 +1,10 @@
 const { Given, When, Then } = require('@badeball/cypress-cucumber-preprocessor');
 
-Given('que o usuário esteja na página minha conta', ()=>{
+Given('que o usuário esteja na página minha conta', function(){
     cy.visit('/minha-conta/')
 })
 
-When('o usuário preencher os campos {string} e {string}', (email, senha)=>{
+When('o usuário preencher os campos {string} e {string}', function(email, senha){
     cy.registrar(email,senha)
 })
 

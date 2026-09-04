@@ -2,16 +2,16 @@ const { Given, When, Then, DataTable } = require('@badeball/cypress-cucumber-pre
 import 'cypress-mochawesome-reporter/cucumberSupport';
 
 
-Given('o usuário estiver na home page', () => {
+Given('o usuário estiver na home page', function(){
     cy.visit('/')
 })
-When("digitar {string} na barra de pesquisa e o usuário selecionar a cor {string} e o tamanho {string}", (produto, cor, tamanho) => {
+When("digitar {string} na barra de pesquisa e o usuário selecionar a cor {string} e o tamanho {string}", function(produto, cor, tamanho){
    cy.adicionarProduto(produto, cor, tamanho, 1)
 });
-When('digitar {string} na barra de pesquisa e o usuário selecionar a cor {string} e o tamanho {string} e a quantidade {string}', (produto, cor, tamanho, quantidade) => {
+When('digitar {string} na barra de pesquisa e o usuário selecionar a cor {string} e o tamanho {string} e a quantidade {string}', function(produto, cor, tamanho, quantidade){
     cy.adicionarProduto(produto, cor, tamanho, quantidade)
 });
-When("digitar {string} na barra de pesquisa e o usuário selecionar a cor {string}", (produto, cor) => {
+When("digitar {string} na barra de pesquisa e o usuário selecionar a cor {string}", function(produto, cor){
     cy.adicionarProduto(produto, cor, '', 1)
 
 });

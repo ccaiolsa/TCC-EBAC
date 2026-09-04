@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@badeball/cypress-cucumber-preprocessor');
 
-Given('que o usuário esteja na página de checkout', () => {
+Given('que o usuário esteja na página de checkout', function(){
     cy.visit('/')
     cy.adicionarProduto('Ingrid Running Jacket','Orange','XS',1)
     cy.visit('/checkout/')
