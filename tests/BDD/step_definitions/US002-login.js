@@ -1,4 +1,4 @@
-const { Given, When, Then, DataTable } = require('@badeball/cypress-cucumber-preprocessor');
+const { Given, When, Then } = require('@badeball/cypress-cucumber-preprocessor');
 import 'cypress-mochawesome-reporter/cucumberSupport';
 
 Given('que o usuário esteja na página de login', function(){
