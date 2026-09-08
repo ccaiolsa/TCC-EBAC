@@ -15,7 +15,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run"
+    "test:ui": "npx cypress run",
+    "test": "jest",
+    "test:mobile": "wdio run ./wdio.conf.js"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^26.0.0",
@@ -40,6 +42,7 @@
     "is-installed-globally": "^1.0.0",
     "is-path-inside": "^4.0.0",
     "is-unicode-supported": "^2.1.0",
+    "joi": "^18.2.8",
     "js-tokens": "^4.0.0",
     "knuth-shuffle-seeded": "^1.0.6",
     "lodash.merge": "^4.6.2",
@@ -87,10 +90,20 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
     "@cucumber/cucumber": "^13.2.1",
     "@cypress/webpack-preprocessor": "^7.1.2",
+    "@wdio/allure-reporter": "^9.31.4",
+    "@wdio/appium-service": "^9.31.5",
+    "@wdio/cli": "^9.31.5",
+    "@wdio/cucumber-framework": "^9.31.5",
+    "@wdio/local-runner": "^9.31.5",
+    "@wdio/spec-reporter": "^9.31.2",
+    "@wdio/visual-service": "^10.1.0",
+    "appium-uiautomator2-driver": "^8.6.1",
     "cypress": "^15.21.1",
     "cypress-mochawesome-reporter": "^5.0.0",
     "cypress-on-fix": "^1.1.0",
-    "esbuild": "^0.28.2"
+    "esbuild": "^0.28.2",
+    "jest": "^30.5.1",
+    "supertest": "^7.2.2"
   },
   "allowScripts": {
     "cypress@15.21.1": true
