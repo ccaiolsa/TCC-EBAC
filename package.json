@@ -17,7 +17,7 @@
   "scripts": {
     "test:ui": "npx cypress run",
     "test:api": "jest",
-    "test:mobile":"npm test && allure generate ./tests/reports/mobile/allure-results && allure open",
+    "test:mobile": "npm test && allure generate ./tests/reports/mobile/allure-results && allure open",
     "test": "wdio run ./config/wdio.conf.js"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "commander": "^15.0.0",
     "debug": "^4.4.3",
     "diff": "^4.0.4",
+    "dotenv": "^17.4.2",
     "emoji-regex": "^8.0.0",
     "error-stack-parser": "^2.1.4",
     "figures": "^6.1.0",
