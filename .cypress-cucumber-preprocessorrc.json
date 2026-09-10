@@ -1,5 +1,5 @@
 {
   "stepDefinitions": [
-    "tests/BDD/step_definitions/**/*.{js,ts}"
+    "tests/UI/step_definitions/**/*.{js,ts}"
   ]
 }
