@@ -1,6 +1,6 @@
 const specConf = {
     specs: [
-        './tests/mobile/features/*.feature'
+        '../tests/mobile/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [

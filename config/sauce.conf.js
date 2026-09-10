@@ -13,8 +13,8 @@ const sauceConf = {
 
     capabilities: [{
         platformName: 'Android',
-        'appium:app': 'storage:filename=mda-2.2.0-25.apk',
-        'appium:deviceName': 'Google Pixel 6 Emulator',
+        'appium:app': 'storage:filename=ebacshop.aab',
+        'appium:deviceName': 'Google Pixel 6a Emulator',
         'appium:platformVersion': '13.0',
         'appium:automationName': 'UiAutomator2',
         'sauce:options': {

@@ -1,13 +1,28 @@
 name: Teste E2E
-on: [push]
+
+on: 
+  push:
+    branches: [main]
+
 permissions: 
   contents: write
+
 jobs:
-  install:
+  test-web:
+    name: web test (Cypress)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup do Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Instalar dependencias
+        run: npm ci
 
       - name: login no dockerhub
         uses: docker/login-action@v4
@@ -19,8 +34,10 @@ jobs:
         run: docker compose up -d --build
   
       - name: Cypress run
+        continue-on-error: true
         uses: cypress-io/github-action@v7
         with:
+         start: npm test:ui
          wait-on: 'http://localhost:80' 
          record: true
          browser: chrome
@@ -39,7 +56,73 @@ jobs:
          force_orphan: true
          commit_message: 'docs: relatorio de testes automáticos [skip ci]'
 
+      - name: se o teste falhar
+        if: steps.cypress.outcome == 'failure'
+        run: exit 1
 
       - name: Derrubando container
         if: always()
         run: docker compose down -v
+
+  test-mobile:
+    name: mobile test (WebdriverIO + SauceLabs)
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: sauce
+      REPORTER: 'true'
+      SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+      SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      
+      - name: setup do Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependências
+        run: npm ci
+      
+      - name: Wdio run
+        continue-on-error: true
+        run: npm test:mobile
+      
+      - name: allure report (artefato)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: tests/reports/mobile/allure-report
+      
+      - name: Se o job falahr
+        if: steps.wdio.outcome == 'failure'
+        run: exit 1
+
+  publish-reports:
+    name: publicar relatórios na branch "reports"
+    needs: [test-web, test-mobile]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: download mochawesome report
+        uses: actions/download-artifact@v4
+        with:
+          name: mochawesome-report
+          path: report-output/web/mochawesome
+
+      - name: download mochawesome report
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-report
+          path: report-output/mobile/allure
+
+      - name: publicar na branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: reports
+          publish_dir: ./report-output
+          keep_files: false
+          commit_message: 'chore(reports): atualiza relatórios web (mochawesome) e mobile (allure) [skip ci]'

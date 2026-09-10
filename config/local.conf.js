@@ -9,7 +9,7 @@ const localConf = {
     capabilities: [{
         // capabilities for local Appium web tests on an Android Emulator
         platformName: 'Android',
-        'appium:deviceName': 'Android A23',
+        'appium:deviceName': 'Pixel 6a',
         'appium:platformVersion': '13.0',
         'appium:automationName': 'UiAutomator2',
         'appium:app': './app/ebacshop.apks'
