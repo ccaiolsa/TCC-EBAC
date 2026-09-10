@@ -37,7 +37,7 @@ jobs:
         continue-on-error: true
         uses: cypress-io/github-action@v7
         with:
-         start: npm test:ui
+         start: npm run test:ui
          wait-on: 'http://localhost:80' 
          record: true
          browser: chrome
@@ -87,7 +87,7 @@ jobs:
       
       - name: Wdio run
         continue-on-error: true
-        run: npm test:mobile
+        run: npm run test:mobile
       
       - name: allure report (artefato)
         if: always()
