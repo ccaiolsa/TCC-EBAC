@@ -20,7 +20,7 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: "http://localhost:80",
     specPattern:[
-      "tests/BDD/features/**/*.feature"
+      "tests/UI/features/**/*.feature"
 
     ], 
     async setupNodeEvents(on, config) {
