@@ -18,7 +18,7 @@ jobs:
       - name: Setup do Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
       
       - name: Instalar dependencias
@@ -79,7 +79,7 @@ jobs:
       - name: setup do Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Instalar dependências
@@ -109,7 +109,7 @@ jobs:
       - name: download mochawesome report
         uses: actions/download-artifact@v4
         with:
-          name: mochawesome-report
+          name: mochawesome-reporter
           path: report-output/web/mochawesome
 
       - name: download mochawesome report
