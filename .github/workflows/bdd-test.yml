@@ -1,10 +1,10 @@
 name: Teste E2E
 
-on: 
+on:
   push:
     branches: [main]
 
-permissions: 
+permissions:
   contents: write
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-      
+
       - name: Instalar dependencias
         run: npm ci
 
@@ -29,32 +29,33 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
+
       - name: Subindo container
         run: docker compose up -d --build
-  
+
       - name: Cypress run
         continue-on-error: true
+        id: cypress
         uses: cypress-io/github-action@v7
         with:
-         start: npm run test:ui
-         wait-on: 'http://localhost:80' 
-         record: true
-         browser: chrome
-
+          start: npm run test:ui
+          wait-on: 'http://localhost:80'
+          record: true
+          browser: chrome
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Salvar Relatório na branch reports
-        uses: peaceiris/actions-github-pages@v3.1.12
+
+      # Sobe o relatório como artifact (em vez de publicar direto na branch aqui).
+      # Quem publica na branch "reports" é o job publish-reports, depois que
+      # web e mobile terminarem — assim evitamos duas publicações concorrentes.
+      - name: Upload mochawesome report (artifact)
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-         github_token: ${{ secrets.GITHUB_TOKEN }}
-         publish_branch: reports
-         publish_dir: 'tests/reports/mochawesome-reporter'
-         force_orphan: true
-         commit_message: 'docs: relatorio de testes automáticos [skip ci]'
+          name: mochawesome-report
+          path: tests/reports/mochawesome-reporter
+          retention-days: 5
 
       - name: se o teste falhar
         if: steps.cypress.outcome == 'failure'
@@ -75,7 +76,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      
+
       - name: setup do Node
         uses: actions/setup-node@v4
         with:
@@ -84,19 +85,25 @@ jobs:
 
       - name: Instalar dependências
         run: npm ci
-      
+
       - name: Wdio run
         continue-on-error: true
-        run: npm run test:mobile
-      
+        id: wdio
+        run: npm run test
+
+      - name: Generate Allure report
+        if: always()
+        run: npx allure generate ./tests/reports/mobile/allure-results -o ./tests/reports/mobile/allure-report --clean
+
       - name: allure report (artefato)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: tests/reports/mobile/allure-report
-      
-      - name: Se o job falahr
+          retention-days: 5
+
+      - name: Se o job falhar
         if: steps.wdio.outcome == 'failure'
         run: exit 1
 
@@ -109,10 +116,10 @@ jobs:
       - name: download mochawesome report
         uses: actions/download-artifact@v4
         with:
-          name: mochawesome-reporter
+          name: mochawesome-report
           path: report-output/web/mochawesome
 
-      - name: download mochawesome report
+      - name: download allure report
         uses: actions/download-artifact@v4
         with:
           name: allure-report
