@@ -34,3 +34,7 @@ appium
 - Executando testes com WebdriverIO + cucumber
 npm run test:mobile
     - Os relatórios estarão armazenados no seguinte endereço: TCC-EBAC\tests\reports\allure-results
+
+Testes API
+- Subir plataforma local
+Seguir o README.md dentro da pasta hub-de-leitura-integrado/

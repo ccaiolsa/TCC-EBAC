@@ -1,0 +1,3 @@
+[submodule "hub-de-leitura-integrado"]
+	path = hub-de-leitura-integrado
+	url = https://github.com/EBAC-QE/hub-de-leitura-integrado.git
