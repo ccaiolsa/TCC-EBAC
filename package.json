@@ -112,6 +112,6 @@
     "cypress@15.21.1": true
   },
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "tests/BDD/step_definitions/**/*.{js,ts}"
+    "stepDefinitions": "tests/UI/step_definitions/**/*.{js,ts}"
   }
 }

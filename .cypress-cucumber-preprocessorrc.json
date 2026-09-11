@@ -1,5 +1,0 @@
-{
-  "stepDefinitions": [
-    "tests/UI/step_definitions/**/*.{js,ts}"
-  ]
-}
