@@ -107,9 +107,45 @@ jobs:
         if: steps.wdio.outcome == 'failure'
         run: exit 1
 
+  test-api:
+    name: Teste API com Supertest
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: setup do Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Instalar dependências
+        run: npm ci
+      
+      - name: Executar supertest
+        continue-on-error: true
+        id: supertest
+        run: npm run test:api
+      
+      - name: v8 coverage (artefato)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v8
+          path: tests/reports/API/v8
+          retention-days: 5
+      
+      - name: Se o job falhar
+        if: steps.wdio.outcome == 'failure'
+        run: exit 1
+
+
   publish-reports:
     name: publicar relatórios na branch "reports"
-    needs: [test-web, test-mobile]
+    needs: [test-web, test-mobile, test-api]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -124,6 +160,12 @@ jobs:
         with:
           name: allure-report
           path: report-output/mobile/allure
+
+      - name: download v8 coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: v8
+          path: report-output/API/v8
 
       - name: publicar na branch
         uses: peaceiris/actions-gh-pages@v4

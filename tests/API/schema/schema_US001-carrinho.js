@@ -1,16 +1,19 @@
 const joi = require('joi')
 
-const unidadeSchema = joi.object({
+const carrinhoSchema = joi.object({
 
-    id: joi.number().integer(),
-    name: joi.string(),
-    price: joi.number().integer(),
-    status: joi.string(),
-    stock_quantity: joi.number().integer(),
-
+    message: joi.string(),
+    itemId: joi.number().integer(),
+    bookTitle: joi.string(),
+    bookAuthor: joi.string(),
+    addedDate: joi.date()
 })
-const produtosSchema = joi.array()
-    .items(unidadeSchema)
-    .required()
+const {error, value} = carrinhoSchema.validate({
+    message: 'Livro adicionado ao carrinho com sucesso.',
+    itemId: 4,
+    bookTitle: 'Dom Casmurro',
+    bookAuthor: 'Machado de Assis',
+    addedDate: '2026-09-13T14:59:45.308Z'
+})
 
-module.exports = produtosSchema
+module.exports = {carrinhoSchema}
