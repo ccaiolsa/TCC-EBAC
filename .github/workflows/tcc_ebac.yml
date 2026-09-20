@@ -41,6 +41,7 @@ jobs:
         uses: cypress-io/github-action@v7
         with:
           working-directory: suites/UI
+          install: false
           wait-on: 'http://localhost:80'
           record: true
           browser: chrome
@@ -122,15 +123,15 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-
-      - name: subir o servidor hub de leitura
-        run: | 
-          cd hub-de-leitura-integrado/
-          npm install
-          npm run start
-
-      - name: Instalar dependências
+      
+      - name: Instalar dependencias
         run: npm ci
+
+      - name: subindo container
+        run:  docker build -t hub-de-leitura -f Dockerfile ./hub-de-leitura-integrado
+
+      - name: subindo servidor
+        run: docker run -d --name hub-de-leitura -p 3000:3000 hub-de-leitura
 
       - name: Executar supertest
         continue-on-error: true
