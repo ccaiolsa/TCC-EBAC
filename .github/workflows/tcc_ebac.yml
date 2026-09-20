@@ -112,6 +112,9 @@ jobs:
   test-api:
     name: api test com Supertest
     runs-on: ubuntu-latest
+    env:
+      EMAIL_API: ${{ secrets.EMAIL_API }}
+      SENHA_API: ${{ secrets.SENHA_API }}
     steps:
       - name: checkout
         uses: actions/checkout@v4
