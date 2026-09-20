@@ -7,8 +7,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "wdio": "wdio run ./config/wdio.conf.js"
+    "test": "wdio run ./config/wdio.conf.js"
   },
   "devDependencies": {
     "@wdio/allure-reporter": "^9.31.4",

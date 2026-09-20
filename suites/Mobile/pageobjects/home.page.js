@@ -2,7 +2,7 @@ const { $ } = require('@wdio/globals')
 
 class HomePage {
     get buscabtn() {
-        return $('new UiSelector().resourceId("tab-Search")')
+        return $('//android.widget.TextView[@resource-id="tab-Search"]')
 
     }
 
