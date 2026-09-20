@@ -1,6 +1,3 @@
-.github/
-workflows/
-
 #app
 app/
 *apks
