@@ -1,1 +1,0 @@
-invalid selector: WebDriverError: Invalid CSS selector 'new UiSelector().resourceId("tab-Search")'. Reason: 'css-selector-parser parse error: Expected rule but "(" found. Pos: 14.' when running "element" with method "POST"
