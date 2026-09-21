@@ -171,22 +171,21 @@ jobs:
       - name: subindo servidor
         run: docker run -d --name hub-de-leitura -p 3000:3000 hub-de-leitura
 
-      - name: Executar testes
+      - name: Teste de login
         uses: grafana/run-k6-action@v1
+        env:
+          EMAIL_K6: ${{ secrets.EMAIL_K6 }}
+          SENHA_K6: ${{ secrets.SENHA_K6 }}
         with:
-          path: suites/performance
+          path: suites/performance/US002-login.test.js
 
-      - name: US001 - carrinho
+      - name: Teste de carrinho
+        uses: grafana/run-k6-action@v1
         env:
-         EMAIL_K6: ${{ secrets.EMAIL_K6 }}
-         SENHA_K6: ${{ secrets.SENHA_K6 }}
-        run: npm run k6:carrinho
-
-      - name: US002 - login
-        env:
-         EMAIL_K6: ${{ secrets.EMAIL_K6 }}
-         SENHA_K6: ${{ secrets.SENHA_K6 }}
-        run: npm run k6:login
+          EMAIL_K6: ${{ secrets.EMAIL_K6 }}
+          SENHA_K6: ${{ secrets.SENHA_K6 }}
+        with:
+          path: suites/performance/US001-carrinho.test.js
       
   publish-reports:
     name: publicar relatórios na branch "reports"
