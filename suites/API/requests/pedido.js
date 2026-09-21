@@ -16,7 +16,14 @@ class Pedido {
                     "bookId": produtoId
                 }
             )
-        return response
+        if(response.status !== 201 ){
+            console.log('Erro no Login', response.status)
+            return null
+        }else{
+            console.log('Login realizado com sucesso', response.status)
+            return response
+
+        }
     }
 
     async retirarReserva(email, senha, reservaId) {

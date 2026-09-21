@@ -9,7 +9,7 @@ const generalConf = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
-    maxInstances: 1,
+    maxInstances: 10,
     framework: 'cucumber',
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {

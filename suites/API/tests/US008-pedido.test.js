@@ -5,7 +5,7 @@ const pedidoSchema = require('../schema/schema_US008-pedido.js')
 const email = process.env.EMAIL_API;
 const senha = process.env.SENHA_API;
 
-let produtoId = 1
+let produtoId = 2
 let reservaId
 
 describe('US008 - Realizar reserva', () => {

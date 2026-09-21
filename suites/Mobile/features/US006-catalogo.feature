@@ -14,8 +14,8 @@ Feature: US006 - Catálogo de produtos
         When o usuário inserir "<palavraChave>"
         Then o usuário ter acesso à um catálogo com o termo "<termo>"
         Examples:
-            | categoria     | termo |
-            | pantsclothing | pant  |
+            | palavraChave | termo |
+            | camiseta     | pant  |
 
     Scenario Outline: CT03 - Acessar catálogo de produtos utilizando filtro de produtos
         Given que o usuário esteja na página de busca

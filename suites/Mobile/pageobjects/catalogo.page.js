@@ -2,46 +2,43 @@ const { $, expect } = require('@wdio/globals')
 
 class CatalogoPage {
     get barraBusca() {
-        return $('new UiSelector().resourceId("searchInput")')
+        return $('android=new UiSelector().resourceId("searchInput")')
     };
     get sortBtn() {
-        return $('new UiSelector().resourceId("SortBy")')
+        return $('//android.widget.TextView[@text="Sort By"]')
     };
-    get filtroOpt() {
-        return $(`//android.view.ViewGroup[@content-desc=${filtro}]/android.view.ViewGroup`)
+    filtroOpt(filtro) {
+        return $(`//android.view.ViewGroup[@content-desc="${filtro}"]/android.view.ViewGroup`)
     };
     get primeiroProduto() {
-        return $('new UiSelector().text("R$ 149.99").instance(0)')
+        return $('(//android.widget.TextView[@text="R$ 149.99"])[1]')
     };
     get segundoProduto() {
-        return $('new UiSelector().text("R$ 159.99").instance(0)')
+        return $('(//android.widget.TextView[@text="R$ 159.99"])[1]')
     };
     get produto() {
-        return $('new UiSelector().description("Camiseta EBAC, R$ 149.99").instance(0)')
+        return $('(//android.view.ViewGroup[@content-desc="Camiseta EBAC, R$ 149.99"])[1]')
     }
 
     async catalogoPersonalizado(palavraCahve, filtro) {
         if (palavraCahve !== '') {
-            await expect(this.sortBtn).toBeClickable()
-            await this.sortBtn.click()
-
-            await expect(this.filtroOpt).toBeClickable()
-            await this.filtroOpt.click()
+            await this.barraBusca.waitForDisplayed({ timeout: 10000 })
+            await this.barraBusca.setValue(palavraCahve)
 
             if (filtro !== '') {
-                await expect(this.barraBusca).toBeClickable()
-                await this.barraBusca.setValue(palavraCahve)
-
-                await expect(this.sortBtn).toBeClickable()
+                await this.sortBtn.waitForDisplayed({ timeout: 10000 })
                 await this.sortBtn.click()
 
-                await expect(this.filtroOpt).toBeClickable()
-                await this.filtroOpt.click()
+                await this.filtroOpt(filtro).waitForDisplayed({ timeout: 10000 })
+                await this.filtroOpt(filtro).click()
 
             }
         } else {
-            await expect(this.barraBusca).toBeClickable()
-            await this.barraBusca.setValue(palavraCahve)
+            await this.sortBtn.waitForDisplayed({ timeout: 10000 })
+            await this.sortBtn.click()
+
+            await this.filtroOpt(filtro).waitForDisplayed({ timeout: 10000 })
+            await this.filtroOpt(filtro).click()
         }
 
     };

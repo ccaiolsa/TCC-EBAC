@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">47.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/40</span>
+                <span class='fraction'>40/40</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">47.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>19/40</span>
+                <span class='fraction'>40/40</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -117,28 +117,28 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -157,28 +157,28 @@ class Carrinho {
 &nbsp;
     async adicionarLivro(bookId, qtd) {
         const userToken = await user.loginAdm(emailAdmin, senhaAdmin)
-<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >        token = userToken.body.token_for_swagger</span></span>
-<span class="cstat-no" title="statement not covered" >        userId = userToken.body.id</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const response = await request.post('/api/basket')</span>
-<span class="cstat-no" title="statement not covered" >            .set('Authorization', `Bearer ${token}`)</span>
-<span class="cstat-no" title="statement not covered" >            .send(</span>
-<span class="cstat-no" title="statement not covered" >                {</span>
-<span class="cstat-no" title="statement not covered" >                    "userId": `${userId}`,</span>
-<span class="cstat-no" title="statement not covered" >                    "bookId": `${bookId}`,</span>
-<span class="cstat-no" title="statement not covered" >                    "quantity": qtd</span>
-<span class="cstat-no" title="statement not covered" >                }</span>
-<span class="cstat-no" title="statement not covered" >            )</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        return response</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="fstat-no" title="function not covered" >    async limparCesta() {</span>
-<span class="cstat-no" title="statement not covered" >        const response = await request.delete(`/api/basket/${userId}`)</span>
-<span class="cstat-no" title="statement not covered" >            .set('Authorization', `Bearer ${token}`)</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        return response</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+        token = userToken.body.token_for_swagger
+        userId = userToken.body.id
+&nbsp;
+        const response = await request.post('/api/basket')
+            .set('Authorization', `Bearer ${token}`)
+            .send(
+                {
+                    "userId": `${userId}`,
+                    "bookId": `${bookId}`,
+                    "quantity": qtd
+                }
+            )
+&nbsp;
+&nbsp;
+        return response
+    };
+    async limparCesta() {
+        const response = await request.delete(`/api/basket/${userId}`)
+            .set('Authorization', `Bearer ${token}`)
+&nbsp;
+        return response
+    }
 &nbsp;
 };
 &nbsp;
@@ -190,7 +190,7 @@ module.exports = new Carrinho()
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-20T15:21:20.463Z
+                at 2026-09-21T12:29:39.642Z
             </div>
         <script src="../prettify.js"></script>
         <script>
