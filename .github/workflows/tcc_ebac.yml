@@ -180,7 +180,7 @@ jobs:
           EMAIL_K6: ${{ secrets.K6_EMAIL }}
           SENHA_K6: ${{ secrets.K6_SENHA }}
           K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }} 
-          K6_PROJECT_ID: ${{ secrets.K6_PROJECT_ID }}
+          K6_CLOUD_PROJECT_ID: ${{ secrets.K6_CLOUD_PROJECT_ID }}
         with:
           path: suites/performance/US002-login.test.js
           flags: --out cloud 
@@ -189,8 +189,9 @@ jobs:
         uses: grafana/run-k6-action@v1
         env:
           EMAIL_K6: ${{ secrets.K6_EMAIL }}
+          SENHA_K6: ${{ secrets.K6_SENHA }}
           K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
-          K6_PROJECT_ID: ${{ secrets.K6_PROJECT_ID }}
+          K6_CLOUD_PROJECT_ID: ${{ secrets.K6_CLOUD_PROJECT_ID }}
         with:
           path: suites/performance/US001-carrinho.test.js
           flags: --out cloud
