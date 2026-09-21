@@ -15,6 +15,7 @@ Aplicar todo conhecimento adiquirido durante o curso de Engenharia de Qualidade 
  - perfil de usuário
  - cadastro de usuário
  - checkout
+
  Um arquivo docker-compose.yml será necessário para subir o servidor local e ficará exposta na porta: http://localhost:80
 
 **Testes Mobile:** Será utilizado o SauceLabs como ambiente de teste e como repositório para o aplicativo, mas as podendo ser facilmente configurada alterando alguns parâmetros no workflow (**ENVIRONMENT**).
@@ -25,12 +26,14 @@ Aplicar todo conhecimento adiquirido durante o curso de Engenharia de Qualidade 
 - perfil de usuário
 - cadastro de usuário
 - checkout
+
 Além das requisições, serão feitos **testes de contrato** localizados em ./suites/API/schema/.
 Um arquivo Dockefile será necessário para subir um servidor local que ficará na porta http://localhost:3000
 
 **Testes de Performance:** Foi realizado um **Load Test** na mesma plataforma utilizada nos **Testes de API**. Os testes avaliaram apenas as seguintes funcionalidades:
 - login 
 - carrinho
+
 **Parâmetros utilizados:** 20 VU, Ramup de 20 seg. com duração de 2 min.
 
 # Stacks utilizadas
