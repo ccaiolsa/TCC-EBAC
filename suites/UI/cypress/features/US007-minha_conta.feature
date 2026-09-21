@@ -9,7 +9,7 @@ Feature: US007 - Criando minha Conta de usuário
 
         Examples:
             | email   | senha   |
-            | Value10@email.com | Teste1! |
+            | Value11@email.com | Teste1! |
 
     Scenario Outline: CT02 - Fazer cadastro sem preencher senha
         Given que o usuário esteja na página minha conta

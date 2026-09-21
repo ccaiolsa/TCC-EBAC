@@ -1,29 +1,43 @@
 # Trabalho de Conclusão de Curso Quality Assurance
 
 # Branches
-Main - Branch destinada às suítes de testes e relatórios gerados localmente
-Reports - Branch destinada aos relatórios gerados via workflow
+- **Main -** Branch destinada às suítes de testes e relatórios gerados localmente
+- **Reports -** Branch destinada aos relatórios gerados via workflow
 
 # Objetivos
 Aplicar todo conhecimento adiquirido durante o curso de Engenharia de Qualidade de Software nas aplicações: Loja Ebacshop nas versões web e mobile e Hub de Leitura Integrado.
 
 # O que será testado?
-Para testes web, será executado um docker-compose.yml para subir o servidor local. Aqui serão feitos testes de User Interface, replicando os fluxos mais prováveis de um usuário padrão.
+**Testes UI:** Os fluxos padrões e alternativos das demais funcionalidades do sistema, como:
+ - login
+ - carrinho de compras
+ - cupom
+ - perfil de usuário
+ - cadastro de usuário
+ - checkout
+ Um arquivo docker-compose.yml será necessário para subir o servidor local e ficará exposta na porta: http://localhost:80
 
-Porta: http://localhost:80
+**Testes Mobile:** Será utilizado o SauceLabs como ambiente de teste e como repositório para o aplicativo, mas as podendo ser facilmente configurada alterando alguns parâmetros no workflow (**ENVIRONMENT**).
 
-Para testes mobile, será utilizado o SauceLabs como ambiente de teste e repositório para o aplicativo por padrão.
+**Testes de API:** Alguns fluxos testados nos Testes UI não serão replicado aqui, por se tratar de outra plataforma, funcionalidades como:
+- login
+- carrinho de compras
+- perfil de usuário
+- cadastro de usuário
+- checkout
+Além das requisições, serão feitos **testes de contrato** localizados em ./suites/API/schema/.
+Um arquivo Dockefile será necessário para subir um servidor local que ficará na porta http://localhost:3000
 
-Para testes API, será "buildada" uma imagem a partir de um Dockerfile para subir o servidor local. Aqui serão testados algumas das Histórias de Usuário (US) definidas nos testes web (apenas os testes aplicáveis a essa nova plataforma)
-Porta http://localhost:3000
-
-Por fim, para testes de performance, foi utilizada a plataforma hub de leitura integrado para testes de carga em duas funcionalidades: Login (US002) e carrinho (US001). Os parâmetros aplicados foram: 20 VU, Ramup de 20 seg. com duração de 2 min.
+**Testes de Performance:** Foi realizado um **Load Test** na mesma plataforma utilizada nos **Testes de API**. Os testes avaliaram apenas as seguintes funcionalidades:
+- login 
+- carrinho
+**Parâmetros utilizados:** 20 VU, Ramup de 20 seg. com duração de 2 min.
 
 # Stacks utilizadas
-Testes UI - Cypress + mochawesome reporter + Cucumber
-Testes mobile - wdio + allure reporter + cucumber + appium
-Testes API - Jest + supertest + joi + v8
-Teste performance - k6
+- **Testes UI -** Cypress + mochawesome reporter + Cucumber
+- **Testes mobile -** wdio + allure reporter + cucumber + appium
+- **Testes API -** Jest + supertest + joi + v8
+- **Teste performance -** k6
 
 # Comandos importantes
 
