@@ -1,4 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","11219","CT03 - Acessar catálogo de produtos utilizando filtro de produtos","US006 - Catálogo de produtos","2026-09-20","failed","2026-09-20","","","",""
-"","11075","CT02 - Acessar catálogo de produtos por categoria","US006 - Catálogo de produtos","2026-09-20","failed","2026-09-20","","","",""
-"","30543","CT01 - Acessar catálogo de produtos selecionando categoria e filtro de busca","US006 - Catálogo de produtos","2026-09-20","failed","2026-09-20","","","",""
