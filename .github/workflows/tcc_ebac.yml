@@ -69,7 +69,7 @@ jobs:
     name: mobile test (WebdriverIO + SauceLabs)
     runs-on: ubuntu-latest
     env:
-      ENVIRONMENT: local
+      ENVIRONMENT: sauce
       REPORTER: 'true'
       SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
       SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}

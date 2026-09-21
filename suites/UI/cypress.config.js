@@ -10,7 +10,7 @@ module.exports = defineConfig({
   reporterOptions: {
     charts: true,
     reportPageTitle: 'E2E Test',
-    reportDir: '../reports/mochawesome-reporter',
+    reportDir: '../reports/UI/mochawesome-reporter',
     timestamp: 'ddmmyyyy',
     overwrite:false,
     embeddedScreenshots: true,
