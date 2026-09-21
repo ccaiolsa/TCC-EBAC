@@ -175,26 +175,21 @@ jobs:
         uses: grafana/setup-k6-action@v1
 
       - name: Teste de login (k6 Cloud)
-        uses: grafana/run-k6-action@v1
+        run: k6 run --out cloud suites/performance/US002-login.test.js
         env:
           EMAIL_K6: ${{ secrets.K6_EMAIL }}
           SENHA_K6: ${{ secrets.K6_SENHA }}
           K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }} 
           K6_CLOUD_PROJECT_ID: ${{ secrets.K6_CLOUD_PROJECT_ID }}
-        with:
-          path: suites/performance/US002-login.test.js
-          flags: --out cloud 
 
       - name: Teste de carrinho (k6 Cloud)
-        uses: grafana/run-k6-action@v1
+        run: k6 run --out cloud suites/performance/US001-carrinho.test.js
         env:
           EMAIL_K6: ${{ secrets.K6_EMAIL }}
           SENHA_K6: ${{ secrets.K6_SENHA }}
           K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
           K6_CLOUD_PROJECT_ID: ${{ secrets.K6_CLOUD_PROJECT_ID }}
-        with:
-          path: suites/performance/US001-carrinho.test.js
-          flags: --out cloud
+
       
   publish-reports:
     name: publicar relatórios na branch "reports"
