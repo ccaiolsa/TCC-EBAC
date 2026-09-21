@@ -154,38 +154,46 @@ jobs:
         run: exit 1
 
   performance:
-      name: performance test (k6)
-      runs-on: ubuntu-latest
-      steps:
+    name: performance test (k6)
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: true
 
-      - name: Setup k6
-        uses: grafana/setup-k6-action@v1
-      
-      - name: subindo container
-        run:  docker build -t hub-de-leitura -f Dockerfile ./hub-de-leitura-integrado
+      - name: Subindo container da API
+        run: docker build -t hub-de-leitura -f Dockerfile ./hub-de-leitura-integrado
 
-      - name: subindo servidor
+      - name: Subindo servidor
         run: docker run -d --name hub-de-leitura -p 3000:3000 hub-de-leitura
 
-      - name: Teste de login
+      - name: Aguardar servidor ficar online
+        run: npx wait-on http://localhost:3000 -t 30000
+
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Teste de login (k6 Cloud)
         uses: grafana/run-k6-action@v1
         env:
-          EMAIL_K6: ${{ secrets.EMAIL_K6 }}
-          SENHA_K6: ${{ secrets.SENHA_K6 }}
+          EMAIL_K6: ${{ secrets.K6_EMAIL }}
+          SENHA_K6: ${{ secrets.K6_SENHA }}
+          K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }} 
+          K6_PROJECT_ID: ${{ secrets.K6_PROJECT_ID }}
         with:
           path: suites/performance/US002-login.test.js
+          flags: --out cloud 
 
-      - name: Teste de carrinho
+      - name: Teste de carrinho (k6 Cloud)
         uses: grafana/run-k6-action@v1
         env:
-          EMAIL_K6: ${{ secrets.EMAIL_K6 }}
-          SENHA_K6: ${{ secrets.SENHA_K6 }}
+          EMAIL_K6: ${{ secrets.K6_EMAIL }}
+          K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
+          K6_PROJECT_ID: ${{ secrets.K6_PROJECT_ID }}
         with:
           path: suites/performance/US001-carrinho.test.js
+          flags: --out cloud
       
   publish-reports:
     name: publicar relatórios na branch "reports"

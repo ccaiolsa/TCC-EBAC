@@ -3,8 +3,8 @@ import http from 'k6/http';
 
 export const options = {
     stages: [
-        { duration: '10s', target: 20 },
-        { duration: '20s', target: 20 }
+        { duration: '20s', target: 20 },
+        { duration: '2m', target: 20 }
     ],
 };
 
@@ -17,8 +17,8 @@ export default () => {
     };
     const payload = JSON.stringify(
         {
-            "email": __ENV.EMAIL_K6,
-            "password": __ENV.SENHA_K6
+            "email": __ENV.K6_EMAIL,
+            "password": __ENV.K6_SENHA
         });
 
     describe('Realizar o login de 20 VU com RamUp de 20 seg e duração de 2 min', () => {

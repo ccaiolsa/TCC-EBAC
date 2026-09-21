@@ -15,7 +15,14 @@ export function loginAdm (email, senha) {
         }
     )
         const response = http.post(url, payload, params)
-        const body = JSON.parse(response.body)
-        return body.token
+
+        if(! response.status === 200){
+            console.log("Status: ", response.status)
+            console.log("Body: ",response.body)
+            return null
+        }else{
+            const body = JSON.parse(response.body)
+            return body.token
+        }
 
 };

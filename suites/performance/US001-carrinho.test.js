@@ -6,14 +6,14 @@ import { loginAdm } from './requests/login.js';
 export const options = {
     /*
     stages: [
-        { duration: '10s', target: 20 },
-        { duration: '10s', target: 20 }
+        { duration: '20s', target: 20 },
+        { duration: '2m', target: 20 }
     ],
     */
 };
 
 export default () => {
-    const token = loginAdm(__ENV.EMAIL_K6, __ENV.SENHA_K6)
+    const token = loginAdm(__ENV.EMAIL_API, __ENV.SENHA_API)
     const url = 'http://localhost:3000/api/reservations';
     const params = {
         headers: {
@@ -23,14 +23,13 @@ export default () => {
     };
     const payload = JSON.stringify(
         {
-            "bookId": 4
+            "bookId": 5
         }
     );
 
     const resp = http.post(url, payload, params)
 
     describe('CT01 - Adicionar item ao carrinho com sucesso', () => {
-        console.log(resp.status)
         check(resp, {'Adicionado com sucesso': (r) => r.status === 201})
         
     });
