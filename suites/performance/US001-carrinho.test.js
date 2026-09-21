@@ -13,7 +13,7 @@ export const options = {
 };
 
 export default () => {
-    const token = loginAdm("usuario@teste.com", "user123")
+    const token = loginAdm(__ENV.EMAIL_K6, __ENV.SENHA_K6)
     const url = 'http://localhost:3000/api/reservations';
     const params = {
         headers: {

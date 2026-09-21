@@ -69,7 +69,7 @@ jobs:
     name: mobile test (WebdriverIO + SauceLabs)
     runs-on: ubuntu-latest
     env:
-      ENVIRONMENT: sauce
+      ENVIRONMENT: local
       REPORTER: 'true'
       SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
       SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
@@ -153,6 +153,39 @@ jobs:
         if: steps.supertest.outcome == 'failure'
         run: exit 1
 
+  performance:
+      name: performance test (k6)
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
+      
+      - name: subindo container
+        run:  docker build -t hub-de-leitura -f Dockerfile ./hub-de-leitura-integrado
+
+      - name: subindo servidor
+        run: docker run -d --name hub-de-leitura -p 3000:3000 hub-de-leitura
+
+      - name: Executar testes
+        uses: grafana/run-k6-action@v1
+        with:
+          path: suites/performance
+
+      - name: US001 - carrinho
+        env:
+         EMAIL_K6: ${{ secrets.EMAIL_K6 }}
+         SENHA_K6: ${{ secrets.SENHA_K6 }}
+        run: npm run k6:carrinho
+
+      - name: US002 - login
+        env:
+         EMAIL_K6: ${{ secrets.EMAIL_K6 }}
+         SENHA_K6: ${{ secrets.SENHA_K6 }}
+        run: npm run k6:login
+      
   publish-reports:
     name: publicar relatórios na branch "reports"
     needs: [test-web, test-mobile, test-api]

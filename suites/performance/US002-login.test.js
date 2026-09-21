@@ -17,8 +17,8 @@ export default () => {
     };
     const payload = JSON.stringify(
         {
-            "email": `usuario@teste.com`,
-            "password": "user123"
+            "email": __ENV.EMAIL_K6,
+            "password": __ENV.SENHA_K6
         });
 
     describe('Realizar o login de 20 VU com RamUp de 20 seg e duração de 2 min', () => {

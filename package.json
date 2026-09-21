@@ -17,11 +17,17 @@
   "scripts": {
     "test:api": "npm run test --workspace=suites/API",
     "test:mobile": "npm run test --workspace=suites/Mobile",
-    "test:ui": "npm run test --workspace=suites/UI"
+    "test:ui": "npm run test --workspace=suites/UI",
+    "k6:login": "dotenv -e env/.env -- k6 run suites/performance/US002-login.test.js",
+    "k6:carrinho": "dotenv -e env/.env k6 run suites/performance/US001-carrinho.test.js",
+    "test:perf": "npm run k6:login && npm run k6:carrinho"
   },
   "workspaces": [
     "suites/UI",
     "suites/API",
     "suites/Mobile"
-  ]
+  ],
+  "devDependencies": {
+    "dotenv-cli": "^11.0.0"
+  }
 }
