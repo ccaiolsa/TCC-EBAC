@@ -9,13 +9,13 @@ Feature: US006 - Catálogo de produtos
             | palavraChave | filtro               |
             | camiseta     | Price -- Low to high |
 
-    Scenario Outline: CT02 - Acessar catálogo de produtos por categoria
+    Scenario Outline: CT02 - Acessar catálogo de produtos pelo nome
         Given que o usuário esteja na página de busca
         When o usuário inserir "<palavraChave>"
         Then o usuário ter acesso à um catálogo com o termo "<termo>"
         Examples:
-            | palavraChave | termo |
-            | camiseta     | pant  |
+            | palavraChave | termo    |
+            | camiseta     | camiseta |
 
     Scenario Outline: CT03 - Acessar catálogo de produtos utilizando filtro de produtos
         Given que o usuário esteja na página de busca

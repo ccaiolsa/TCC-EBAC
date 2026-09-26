@@ -18,7 +18,7 @@ Feature: US001 - Adicionar item ao carrinho
             | produto               | cor   | tamanho | mensagem                                                                      |
             | Ingrid Running Jacket | White | XL      | Desculpe, este produto não está disponível. Escolha uma combinação diferente. |
 
-    Scenario Outline: CT03 - Adicionar uma quantidade além do estoque disponível
+    Scenario Outline: CT03 - Adicionar uma quantidade total do estoque disponível
         Given o usuário estiver na home page
         When digitar "<produto>" na barra de pesquisa e o usuário selecionar a cor "<cor>" e o tamanho "<tamanho>" e a quantidade "<quantidade>"
         Then deve aparecer a seguinte mensagem não deve aparecer "<mensagem>"

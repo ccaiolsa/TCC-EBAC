@@ -19,7 +19,7 @@
     "test:mobile": "npm run test --workspace=suites/Mobile",
     "test:ui": "npm run test --workspace=suites/UI",
     "k6:login": "dotenv -e env/.env -- k6 run --out cloud suites/performance/US002-login.test.js",
-    "k6:carrinho": "dotenv -e env/.env -- k6 run --out cloud suites/performance/US001-carrinho.test.js",
+    "k6:carrinho": "dotenv -e env/.env -- k6 run --out cloud suites/performance/US0001-carrinho.test.js",
     "test:perf": "npm run k6:login && npm run k6:carrinho"
   },
   "workspaces": [

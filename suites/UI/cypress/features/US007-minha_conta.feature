@@ -8,7 +8,7 @@ Feature: US007 - Criando minha Conta de usuário
         Then o usuário deve ser redirecionado para a página do perfil do usuário
 
         Examples:
-            | email   | senha   |
+            | email             | senha   |
             | Value11@email.com | Teste1! |
 
     Scenario Outline: CT02 - Fazer cadastro sem preencher senha
@@ -17,7 +17,7 @@ Feature: US007 - Criando minha Conta de usuário
         Then a mensagem "<mensagem>" deve aparecer na tela
 
         Examples:
-            | email         | senha | mensagem                       |
+            | email          | senha | mensagem                       |
             | teste@ebac.com |       | Erro: Digite a senha da conta. |
 
     Scenario Outline: CT03 - Fazer cadastro sem preencher email
@@ -25,7 +25,7 @@ Feature: US007 - Criando minha Conta de usuário
         When o usuário preencher os campos "<email>" e "<senha>"
         Then a mensagem "<mensagem>" deve aparecer na tela
         Examples:
-           | email | senha  | mensagem                                    |
+            | email | senha  | mensagem                                    |
             |       | Teste1 | Erro: Informe um endereço de e-mail válido. |
 
     Scenario Outline: CT04 - Realizar registro sem preencher um campo

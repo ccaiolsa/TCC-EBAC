@@ -25,7 +25,7 @@ Feature: US006 - Catálogo de produtos
         Examples:
         Examples:
             | palavraChave | termo1 | termo2 |
-            | Pants   | pant   | tight  |   
+            | Pants        | pant   | tight  |
 
     Scenario Outline: CT04 - Acessar catálogo de produtos utilizando filtro de produtos
         Given que o usuário esteja na página de busca
